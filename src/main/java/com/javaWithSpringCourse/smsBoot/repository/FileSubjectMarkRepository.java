@@ -3,6 +3,7 @@ package com.javaWithSpringCourse.smsBoot.repository;
 
 import com.javaWithSpringCourse.smsBoot.entity.SubjectMark;
 import com.javaWithSpringCourse.smsBoot.utils.FileUtil;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 /**
  * Created by sailesh on 1/12/22.
  */
+
+@Repository
 public class FileSubjectMarkRepository implements  SubjectMarkRepository{
 
     private static final String FILE_NAME = "subjectMark.txt";

@@ -4,20 +4,25 @@ package com.javaWithSpringCourse.smsBoot.service;
 import com.javaWithSpringCourse.smsBoot.entity.Student;
 import com.javaWithSpringCourse.smsBoot.repository.FileStudentRepository;
 import com.javaWithSpringCourse.smsBoot.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 /**
  * Created by sailesh on 1/4/22.
  */
+
+@Service
 public class StudentService {
-    StudentRepository studentRepository = new FileStudentRepository();
+    @Autowired
+    private StudentRepository studentRepository;
 
     public Student createStudent(Student student) {
         //todo check if the data is valid
         //todo persist the data
         Student student1 = studentRepository.saveStudent(student);
-        return student;
+        return student1;
 
     }
 

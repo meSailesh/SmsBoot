@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymleaf.org">
+<head>
+<div th:replace="common::head"></div>
+</head>
+<body>
+
+<!--Main Navigation-->
+<div th:replace="common::header"></div>
+
+<!--Main layout-->
+<!--Main layout-->
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a th:href="@{/student/create}" class="btn btn-success mb-4"> Create Student</a>
+                </div>
+            </div>
+            <div class="row" >
+                <table id="studentTable" class="table table-striped" cellspacing="0"  width="100%">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Date of Birth</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="student : ${students}">
+                        <td th:text="${student.name}"></td>
+                        <td th:text="${student.age}"></td>
+                        <td th:text="${student.address}"></td>
+                        <td th:text="${#dates.format(student.dob, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${student.gender}"></td>
+                        <td></td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+<div th:replace="common::footer"></div>
+
+
+</body>
+</html>

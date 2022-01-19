@@ -8,6 +8,8 @@ import com.javaWithSpringCourse.smsBoot.model.Status;
 import com.javaWithSpringCourse.smsBoot.repository.FileSubjectMarkRepository;
 import com.javaWithSpringCourse.smsBoot.repository.SubjectMarkRepository;
 import com.javaWithSpringCourse.smsBoot.utils.FileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +18,12 @@ import java.util.Map;
 /**
  * Created by sailesh on 1/4/22.
  */
+@Service
 public class ExamResultService {
     private static final String FILE_NAME = "subjectMark.txt";
 
-    SubjectMarkRepository subjectMarkRepository = new FileSubjectMarkRepository();
+    @Autowired
+    private SubjectMarkRepository subjectMarkRepository;
 
 
     public void insertMarks(Integer studentId , Map<Integer, Double> subjectMarksMap) {

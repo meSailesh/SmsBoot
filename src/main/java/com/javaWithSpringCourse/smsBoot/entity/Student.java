@@ -1,5 +1,7 @@
 package com.javaWithSpringCourse.smsBoot.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -11,6 +13,7 @@ public class Student {
     private Integer age;
     private String address;
     private String gender;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
     public Integer getId() {

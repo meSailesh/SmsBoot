@@ -2,6 +2,7 @@ package com.javaWithSpringCourse.smsBoot.repository;
 
 import com.javaWithSpringCourse.smsBoot.entity.Student;
 import com.javaWithSpringCourse.smsBoot.utils.FileUtil;
+import org.springframework.stereotype.Repository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,9 +12,10 @@ import java.util.List;
 /**
  * Created by sailesh on 1/4/22.
  */
+@Repository
 public class FileStudentRepository implements StudentRepository {
 
-    private static final String FILE_NAME = "students.txt";
+    private static final String FILE_NAME = "/files/students.txt";
 
     public Student saveStudent(Student student) {
         Integer key = FileUtil.getLastUniqueIdentifier(FILE_NAME);

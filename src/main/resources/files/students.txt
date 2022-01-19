@@ -1,0 +1,6 @@
+1,test,25,ktm,male,Fri Jan 01 00:00:00 NPT 2021
+2,bob,63,test,male,Fri Jan 10 00:00:00 NPT 2020
+4,peter,25,lalitpur,male,Sat Jan 01 00:00:00 NPT 2022
+5,ram,34,ktm,male,Fri Jan 19 00:00:00 NPT 2001
+6,ram,34,pkr,male,Sat Jan 01 00:00:00 NPT 2000
+7,jack,24,usa,male,Sat Jan 01 00:00:00 NPT 2022

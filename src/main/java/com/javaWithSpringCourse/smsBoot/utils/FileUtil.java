@@ -1,18 +1,29 @@
 package com.javaWithSpringCourse.smsBoot.utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.*;
 
 /**
  * Created by sailesh on 1/6/22.
  */
 public class FileUtil {
 
+    private static File getFile(String fileName) {
+        try{
+        File file = new ClassPathResource(fileName).getFile();
+        return file;
+    } catch (IOException e) {
+            System.out.println("error reading file");
+        }
+        return null;
+
+    }
+
     public static String saveRecordsToFile(String fileName, String record) {
         try{
-            FileWriter fileWriter = new FileWriter(fileName, true);
+            File file = getFile(fileName);
+            FileWriter fileWriter = new FileWriter(file, true);
             String newRecord = (record != null && !record.isEmpty()) ? record.concat("\n") : record;
             fileWriter.write(newRecord);
             fileWriter.close();
@@ -26,7 +37,8 @@ public class FileUtil {
 
     public static String overrideRecordsToFile(String fileName, String record) {
         try{
-            FileWriter fileWriter = new FileWriter(fileName);
+            File file = getFile(fileName);
+            FileWriter fileWriter = new FileWriter(file);
             String newRecord = (record != null && !record.isEmpty()) ? record.concat("\n") : record;
             fileWriter.write(newRecord);
             fileWriter.close();
@@ -42,7 +54,8 @@ public class FileUtil {
 
     public static Integer  getLastUniqueIdentifier(String fileName) {
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            File file = getFile(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             String lastLine = null;
             while(bufferedReader.ready()) {
                 lastLine = bufferedReader.readLine();
@@ -64,7 +77,8 @@ public class FileUtil {
 
     public static String  getRecordByKey(String fileName, Integer key) {
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            File file = getFile(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             while(bufferedReader.ready()) {
                 String line = bufferedReader.readLine();
                 String[] fields = line.split(",");
@@ -83,7 +97,8 @@ public class FileUtil {
 
     public static String  getRecordByKeyAndIndex(String fileName, Integer key, Integer index) {
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            File file = getFile(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             StringBuilder stringBuilder = new StringBuilder();
             while(bufferedReader.ready()) {
                 String line = bufferedReader.readLine();
@@ -108,7 +123,8 @@ public class FileUtil {
 
     public static String  getRecordByName(String fileName, String name) {
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            File file = getFile(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             StringBuilder stringBuilder = new StringBuilder();
             while(bufferedReader.ready()) {
                 String line = bufferedReader.readLine();
@@ -131,7 +147,8 @@ public class FileUtil {
 
     public static String  getRecords(String fileName) {
         try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+            File file = getFile(fileName);
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             StringBuilder stringBuilder = new StringBuilder();
             while(bufferedReader.ready()) {
                 String line = bufferedReader.readLine();

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head>
+    <div th:replace="common :: head"></div>
+
+</head>
+
+<body>
+<!--Main Navigation-->
+<div th:replace="common :: header"></div>
+
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        <div class="row mb-4" >
+            <div class="col"><a th:href="@{/student/all}" class="btn btn-info" ><i class="fas fa-chevron-left"></i> Back</a></div>
+        </div>
+        <div class="row mb-2" >
+           <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <form th:action="@{/student/create}" th:method="post" th:object="${student}">
+                        <!-- 2 column grid layout with text inputs for the first and last names -->
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="form-outline">
+                                    <input type="text" id="form6Example1" class="form-control" th:field="*{name}"/>
+                                    <label class="form-label" for="form6Example1">name</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="form6Example3" class="form-control" th:field="*{address}" />
+                            <label class="form-label" for="form6Example3">Address</label>
+                        </div>
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4">
+                            <input type="number" id="form6Example4" class="form-control" th:field="*{age}"/>
+                            <label class="form-label" for="form6Example4">Age</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="date" id="form6Example5" class="form-control" th:field="*{dob}"/>
+                            <label class="form-label" for="form6Example5">Date Of Birth</label>
+                        </div>
+
+                        <!-- Number input -->
+
+                        <!-- Text input -->
+                        <div class="form-outline mb-4" >
+                            <input type="text" id="form" class="form-control" th:field="*{gender}"/>
+                            <label class="form-label" for="form6Example3">Gender</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Create Student</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+<!--Main layout-->
+
+
+
+<div th:replace="common :: footer"></div>
+
+</body>
+</html>
