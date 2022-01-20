@@ -38,15 +38,15 @@
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <a th:href="@{/}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                    <a th:href="@{/}" class="list-group-item list-group-item-action py-2 ripple" aria-current="true" th:classappend="${#httpServletRequest.getRequestURI(). startsWith('/dashboard') ? 'active' : ''}">
                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main Dashboard</span>
                     </a>
-                    <a th:href="@{/student/all}" class="list-group-item list-group-item-action py-2 ripple active">
+                    <a th:href="@{/student/all}" class="list-group-item list-group-item-action py-2 ripple" th:classappend="${#httpServletRequest.getRequestURI(). startsWith('/student') ? 'active' : ''}">
                         <i class="fas fa-user fa-fw me-3"></i><span>Students</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" th:classappend="${#httpServletRequest.getRequestURI(). startsWith('/subject') ? 'active' : ''}"><i
                             class="fas fa-book fa-fw me-3"></i><span>Subjects</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" th:classappend="${#httpServletRequest.getRequestURI(). startsWith('/result') ? 'active' : ''}"><i
                             class="fas fa-graduation-cap fa-fw me-3"></i><span>Exam Results</span></a>
                 </div>
             </div>

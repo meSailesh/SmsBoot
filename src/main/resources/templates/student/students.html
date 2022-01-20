@@ -18,6 +18,12 @@
                     <a th:href="@{/student/create}" class="btn btn-success mb-4"> Create Student</a>
                 </div>
             </div>
+            <div class="row mb-2" >
+                <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+            </div>
+            <div class="row mb-2" >
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            </div>
             <div class="row" >
                 <table id="studentTable" class="table table-striped" cellspacing="0"  width="100%">
                     <thead>
@@ -37,13 +43,53 @@
                         <td th:text="${student.address}"></td>
                         <td th:text="${#dates.format(student.dob, 'dd-MM-yyyy')}"></td>
                         <td th:text="${student.gender}"></td>
-                        <td></td>
+                        <td>
+                            <a class="btn btn-warning" th:href="@{/student/{id}(id=${student.id})}">View </a>
+                            <a class="btn btn-info" th:href="@{/student/update/{id}(id=${student.id})}">Update </a>
+                            <!--<a class="btn btn-danger delete_student_button" th:attr="data-id =${student.id}" >Delete </a>-->
+                            <a class="btn btn-danger"  th:href="@{/student/delete/{id}(id=${student.id})}">Delete </a>
+
+
+
+                        </td>
                     </tr>
 
                     </tbody>
 
                 </table>
 
+            </div>
+
+            <div class="row">
+                <!-- Modal -->
+                <div
+                        class="modal fade"
+                        id="delete_student_modal"
+                        tabindex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Student</h5>
+                                <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-mdb-dismiss="modal"
+                                        aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">Are you sure want to delete this student?</div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                                    Close
+                                </button>
+                                <a th:href="@{/student/delete/{id}(id=_id_)}" id="delete_button_modal" class="btn btn-primary">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

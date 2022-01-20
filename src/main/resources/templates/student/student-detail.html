@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org/">
+<head>
+    <div th:replace="common :: head"></div>
+
+</head>
+
+<body>
+<!--Main Navigation-->
+<div th:replace="common :: header"></div>
+
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px">
+    <div class="container pt-4">
+        <div class="row mb-4" >
+            <div class="col"><a th:href="@{/student/all}" class="btn btn-info" ><i class="fas fa-chevron-left"></i> Back</a></div>
+        </div>
+        <div class="row">
+            <div class="container">
+
+                <div class="container mt-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-7">
+                            <div class="card p-2 text-center">
+                                <div class="row" th:object="${student}">
+                                    <div class="col-md-7 border-right no-gutters">
+                                        <div class="py-3"><img src="https://i.imgur.com/hczKIze.jpg" width="100" class="rounded-circle">
+                                            <h4 class="text-secondary text-capitalize" th:text="*{name}"></h4>
+                                            <div class="allergy"> Student Id: <span th:text="*{id}"></span></div>
+                                            <div class="stats">
+                                                <table class="table table-borderless">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex flex-column"> <span class="text-left head">DOB</span> <span class="text-left bottom" th:text="*{#dates.format(dob,'dd-MM-yyyy')}"></span> </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex flex-column"> <span class="text-left head">Age</span> <span class="text-left bottom" th:text="*{age}"></span> </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <div class="d-flex flex-column"> <span class="text-left head">Weight</span> <span class="text-left bottom">168 lb</span> </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="d-flex flex-column"> <span class="text-left head">Height</span> <span class="text-left bottom">5'9"</span> </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="px-3"><button type="button" class="btn btn-primary btn-block">Update Details</button></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="py-3">
+                                            <div> <span class="d-block head">Home Address</span> <span class="bottom" th:text="*{address}"></span> </div>
+                                            <div class="mt-4"> <span class="d-block head">Mobile Phone#</span> <span class="bottom">917 (543)-1234</span> </div>
+                                            <div class="mt-4"> <span class="d-block head">Home Phone#</span> <span class="bottom">212 (213)-1234</span> </div>
+                                            <div class="mt-4"> <span class="d-block head">Work Phone#</span> <span class="bottom">718 (702)-9876</span> </div>
+                                            <div class="mt-4"> <span class="d-block head">Email</span> <span class="bottom">j.smith@gmail.com</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+<!--Main layout-->
+
+
+
+<div th:replace="common :: footer"></div>
+
+</body>
+</html>

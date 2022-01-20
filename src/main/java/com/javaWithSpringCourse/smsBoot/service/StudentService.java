@@ -49,6 +49,13 @@ public class StudentService {
     public Student deleteStudent(Student student) {
         return studentRepository.deleteStudent(student);
     }
+
+    public Student deleteStudent(Integer studentId) {
+        Student student = findStudent(studentId);
+        return deleteStudent(student);
+    }
+
+
 }
 
 

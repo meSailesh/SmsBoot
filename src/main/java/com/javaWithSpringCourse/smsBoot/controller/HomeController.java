@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String getHomePage(Model model) {
-        model.addAttribute("name", "Sailesh Dhakal");
+    public String getHomePage() {
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/dashboard")
+    public String getDashboardPage() {
         return "dashboard";
     }
 }

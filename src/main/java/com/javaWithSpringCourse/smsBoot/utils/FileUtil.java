@@ -170,3 +170,7 @@ public class FileUtil {
 //counter 0
 // counter 1
 // counter 2
+// create spring boot application -> compile -> class files
+//class files + resources -> bundled into jar
+// copy jar file to webserver(tomcat)
+//run webserver at port 8080
