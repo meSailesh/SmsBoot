@@ -90,7 +90,11 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                             <li><a class="dropdown-item" href="#">My profile</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li>
+                                <form class="form-inline" th:method="post" th:action="@{/logout}">
+                                    <a class="dropdown-item" onclick="this.parentNode.submit();">Logout</a>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>

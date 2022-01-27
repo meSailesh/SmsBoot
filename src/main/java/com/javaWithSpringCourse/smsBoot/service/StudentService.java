@@ -21,21 +21,21 @@ public class StudentService {
     public Student createStudent(Student student) {
         //todo check if the data is valid
         //todo persist the data
-        Student student1 = studentRepository.saveStudent(student);
+        Student student1 = studentRepository.save(student);
         return student1;
 
     }
 
     public Student findStudent(Integer studentId) {
-        return studentRepository.findStudent(studentId);
+        return studentRepository.findById(studentId).get();
     }
 
-    public List<Student> findStudent(String studentName) {
-        return studentRepository.findStudent(studentName);
+    public Student findStudent(String studentName) {
+        return studentRepository.findByName(studentName);
     }
 
     public List<Student> findAllStudent() {
-      return studentRepository.findAllStudent();
+      return studentRepository.findAll();
     }
 
     public Student updateStudent(Student student) {
@@ -43,11 +43,12 @@ public class StudentService {
 //        Date dob = student.getDob();
 //        Long age = new Date().getTime() - dob.getTime();
 //        student.setAge(age.intValue());
-        return studentRepository.updateStudent(student);
+        return studentRepository.save(student);
     }
 
     public Student deleteStudent(Student student) {
-        return studentRepository.deleteStudent(student);
+        studentRepository.delete(student);
+        return student;
     }
 
     public Student deleteStudent(Integer studentId) {

@@ -1,11 +1,10 @@
 package com.javaWithSpringCourse.smsBoot.service;
 
 
-import com.javaWithSpringCourse.smsBoot.entity.Result;
+import com.javaWithSpringCourse.smsBoot.model.Result;
 import com.javaWithSpringCourse.smsBoot.entity.Student;
 import com.javaWithSpringCourse.smsBoot.entity.SubjectMark;
 import com.javaWithSpringCourse.smsBoot.model.Status;
-import com.javaWithSpringCourse.smsBoot.repository.FileSubjectMarkRepository;
 import com.javaWithSpringCourse.smsBoot.repository.SubjectMarkRepository;
 import com.javaWithSpringCourse.smsBoot.utils.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,17 +2,34 @@ package com.javaWithSpringCourse.smsBoot.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by sailesh on 1/5/22.
  */
+@Entity
+@Table(name="student")
 public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "name", unique = true)
     private String name;
+
+    @Column(name = "age")
     private Integer age;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "gender")
     private String gender;
+
+    @Column(name = "dob")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 

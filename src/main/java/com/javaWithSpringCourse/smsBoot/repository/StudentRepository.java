@@ -2,18 +2,17 @@ package com.javaWithSpringCourse.smsBoot.repository;
 
 
 import com.javaWithSpringCourse.smsBoot.entity.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 /**
  * Created by sailesh on 1/6/22.
  */
-public interface StudentRepository {
+public interface StudentRepository extends JpaRepository<Student, Integer>, StudentRepositoryCustom{
 
-    Student saveStudent(Student student);
-    Student findStudent(Integer studentId);
-    List<Student> findStudent(String studentName);
-    List<Student> findAllStudent();
-    Student updateStudent(Student student);
-    Student deleteStudent(Student student);
+    Student findByName(String name);
+
+
+
 }

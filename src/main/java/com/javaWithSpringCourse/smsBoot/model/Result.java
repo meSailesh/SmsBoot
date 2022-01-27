@@ -1,6 +1,8 @@
-package com.javaWithSpringCourse.smsBoot.entity;
+package com.javaWithSpringCourse.smsBoot.model;
 
 
+import com.javaWithSpringCourse.smsBoot.entity.Student;
+import com.javaWithSpringCourse.smsBoot.entity.SubjectMark;
 import com.javaWithSpringCourse.smsBoot.model.Status;
 
 import java.util.List;

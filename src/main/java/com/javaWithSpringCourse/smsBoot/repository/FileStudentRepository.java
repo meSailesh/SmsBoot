@@ -12,8 +12,9 @@ import java.util.List;
 /**
  * Created by sailesh on 1/4/22.
  */
+
 @Repository
-public class FileStudentRepository implements StudentRepository {
+public class FileStudentRepository implements StudentRepositoryCustom {
 
     private static final String FILE_NAME = "/files/students.txt";
 
@@ -70,7 +71,7 @@ public class FileStudentRepository implements StudentRepository {
     }
 
     @Override
-    public Student deleteStudent(Student student) {
+    public Student deleteRecord(Student student) {
         List<Student> students = findAllStudent();
         StringBuilder stringBuilder = new StringBuilder();
         for(Student student1 : students) {
