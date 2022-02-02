@@ -46,14 +46,14 @@ public class StudentController {
 
 
     @GetMapping("/{id}")
-    public String viewStudentPage(@PathVariable(value = "id")Integer studentId, Model model) {
+    public String viewStudentPage(@PathVariable(value = "id")Integer studentId, Model model) throws Exception{
         Student student = studentService.findStudent(studentId);
         model.addAttribute("student", student);
         return "student/student-detail";
     }
 
     @GetMapping("/update/{id}")
-    public String updateStudentPage(@PathVariable(value = "id") Integer studentId, Model model) {
+    public String updateStudentPage(@PathVariable(value = "id") Integer studentId, Model model) throws Exception{
         Student student = studentService.findStudent(studentId);
         model.addAttribute("student", student);
         return "student/student-update";
@@ -71,7 +71,7 @@ public class StudentController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable(value = "id") Integer studentId, RedirectAttributes redirectAttributes) {
+    public String deleteStudent(@PathVariable(value = "id") Integer studentId, RedirectAttributes redirectAttributes) throws Exception {
         Student deletedStudent = studentService.deleteStudent(studentId);
         if(deletedStudent != null) {
             redirectAttributes.addFlashAttribute("message", "Student deleted Successfully");

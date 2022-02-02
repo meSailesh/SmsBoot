@@ -19,6 +19,7 @@ public class FileStudentRepository implements StudentRepositoryCustom {
     private static final String FILE_NAME = "/files/students.txt";
 
     public Student saveStudent(Student student) {
+        System.out.println("Saving student details");
         Integer key = FileUtil.getLastUniqueIdentifier(FILE_NAME);
         student.setId(key + 1);
         String record = student.toCsvString();
