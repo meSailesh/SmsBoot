@@ -10,7 +10,9 @@ import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -62,5 +64,17 @@ public class PublicController {
     @DeleteMapping("/students/{id}/delete")
     public Student updateStudent(@PathVariable("id") Integer studentId) throws Exception {
         return studentService.deleteStudent(studentId);
+    }
+
+    @PostMapping("/students/upload")
+    public ResponseEntity<?> uploadStudent(@RequestParam(name = "file")MultipartFile file) throws Exception {
+        studentService.uploadStudentRecord(file);
+        return  new ResponseEntity<Object>(HttpStatus.OK);
+    }
+
+    @GetMapping("/students/download")
+    public ResponseEntity<?> downloadStudents(HttpServletResponse response) throws Exception {
+        studentService.downloadStudentRecords(response);
+        return  new ResponseEntity<Object>(HttpStatus.OK);
     }
 }

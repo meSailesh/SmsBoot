@@ -5,20 +5,26 @@ import com.javaWithSpringCourse.smsBoot.controller.PublicController;
 import com.javaWithSpringCourse.smsBoot.entity.Student;
 import com.javaWithSpringCourse.smsBoot.exception.StudentNotFoundException;
 import com.javaWithSpringCourse.smsBoot.model.*;
+import com.javaWithSpringCourse.smsBoot.parser.StudentParser;
 import com.javaWithSpringCourse.smsBoot.repository.FileStudentRepository;
 import com.javaWithSpringCourse.smsBoot.repository.StudentRepository;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.DateUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -42,6 +48,13 @@ public class StudentService {
         //todo persist the data
         Student student1 = studentRepository.save(student);
         return student1;
+
+    }
+
+    public void createStudent(List<Student> students) {
+        //todo check if the data is valid
+        //todo persist the data
+        studentRepository.saveAll(students);
 
     }
 
@@ -154,6 +167,32 @@ public class StudentService {
     public Student deleteStudent(Integer studentId) throws Exception{
         Student student = findStudent(studentId);
         return deleteStudent(student);
+    }
+
+    @Autowired
+    StudentParser studentParser;
+    public void uploadStudentRecord(MultipartFile multipartFile) throws  Exception {
+        List<Student> students = studentParser.parseAndMapStudents(multipartFile);
+        logger.info("Received {} of students to persist. Records : {}", students.size(), students);
+        createStudent(students);
+
+    }
+
+    public void downloadStudentRecords(HttpServletResponse response) throws Exception {
+
+        List<Student> students =findAllStudent();
+        String fileName = "students" + DateUtils.format(new Date(), "yyyy-MM-dd", Locale.ENGLISH) + ".csv";
+
+        response.setContentType("text/csv");
+        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"");
+
+        StatefulBeanToCsv<Student> writer = new StatefulBeanToCsvBuilder<Student>(response.getWriter())
+                .withSeparator(',')
+                .withIgnoreField(Student.class, Student.class.getDeclaredField("id"))
+                .build();
+
+        writer.write(students);
+
     }
 
 
