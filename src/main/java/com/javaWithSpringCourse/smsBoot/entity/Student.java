@@ -1,9 +1,11 @@
 package com.javaWithSpringCourse.smsBoot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sailesh on 1/5/22.
@@ -32,6 +34,10 @@ public class Student {
     @Column(name = "dob")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "student")
+    private List<SubjectMark> subjectMarks;
 
     public Integer getId() {
         return id;
@@ -81,6 +87,13 @@ public class Student {
         this.dob = dob;
     }
 
+    public List<SubjectMark> getSubjectMarks() {
+        return subjectMarks;
+    }
+
+    public void setSubjectMarks(List<SubjectMark> subjectMarks) {
+        this.subjectMarks = subjectMarks;
+    }
 
     @Override
     public String toString() {

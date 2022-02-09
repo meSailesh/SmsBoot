@@ -1,9 +1,16 @@
 package com.javaWithSpringCourse.smsBoot.controller;
 
+import com.javaWithSpringCourse.smsBoot.entity.Role;
 import com.javaWithSpringCourse.smsBoot.entity.Student;
+import com.javaWithSpringCourse.smsBoot.entity.SubjectMark;
+import com.javaWithSpringCourse.smsBoot.entity.User;
+import com.javaWithSpringCourse.smsBoot.exception.StudentNotFoundException;
 import com.javaWithSpringCourse.smsBoot.model.PageRequest;
 import com.javaWithSpringCourse.smsBoot.model.StudentDto;
+import com.javaWithSpringCourse.smsBoot.service.ExamResultService;
+import com.javaWithSpringCourse.smsBoot.service.RoleService;
 import com.javaWithSpringCourse.smsBoot.service.StudentService;
+import com.javaWithSpringCourse.smsBoot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Slice;
@@ -77,4 +84,62 @@ public class PublicController {
         studentService.downloadStudentRecords(response);
         return  new ResponseEntity<Object>(HttpStatus.OK);
     }
+
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    UserService userService;
+
+
+    @PostMapping("/roles/create")
+    public Role createRole(@RequestBody Role role){
+        return roleService.createRole(role);
+    }
+
+    @PostMapping("/users/create")
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
+    }
+
+
+    @GetMapping("/roles/{id}")
+    public Role getRole(@PathVariable(name = "id") Integer roleId){
+        return roleService.getRole(roleId);
+    }
+
+    @GetMapping("/users/{id}")
+    public User getUser(@PathVariable(name = "id") Long userId){
+        return userService.getUser(userId);
+    }
+
+    @PostMapping("users/{id}/assignRole")
+    public User assignRoleToUser(@PathVariable(name = "id") Long userId, @RequestParam(name = "roleId") Integer roleId) {
+        return userService.assignRoleToUser(userId, roleId);
+    }
+
+    @DeleteMapping("users/{id}/delete")
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") Long userId) {
+        userService.deleteUser(userId);
+        return new ResponseEntity(HttpStatus.OK);
+
+
+    }
+
+    @Autowired
+    ExamResultService examResultService;
+
+
+    @PostMapping("students/insert-mark")
+    public SubjectMark creteSubjectMark(@RequestBody SubjectMark subjectMark) {
+
+        return examResultService.createSubjectMark(subjectMark);
+
+
+
+
+
+    }
+
+
 }

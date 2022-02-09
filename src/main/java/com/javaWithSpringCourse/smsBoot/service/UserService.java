@@ -1,5 +1,6 @@
 package com.javaWithSpringCourse.smsBoot.service;
 
+import com.javaWithSpringCourse.smsBoot.entity.Role;
 import com.javaWithSpringCourse.smsBoot.entity.User;
 import com.javaWithSpringCourse.smsBoot.model.UserDto;
 import com.javaWithSpringCourse.smsBoot.repository.UserRepository;
@@ -34,4 +35,33 @@ public class UserService {
             throw new Exception("User already Exists. Please login or try forget password");
         }
     }
+
+
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public User getUser(Long userId) {
+        return userRepository.getById(userId);
+    }
+
+    @Autowired
+    RoleService roleService;
+
+    public User assignRoleToUser(Long userId, Integer roleId) {
+        User user = getUser(userId);
+        Role role = roleService.getRole(roleId);
+        user.setRole(role);
+
+        createUser(user);
+        return  user;
+
+    }
+
+
+    public void deleteUser(Long userId) {
+        User user = getUser(userId);
+        userRepository.delete(user);
+    }
+
 }

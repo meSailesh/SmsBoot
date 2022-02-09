@@ -1,6 +1,7 @@
 package com.javaWithSpringCourse.smsBoot.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by sailesh on 1/26/22.
@@ -24,6 +25,15 @@ public class User {
 
     @Column(name="password")
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name ="role_id")
+
+    )
+    private List<Role> roles;
 
 
     public Long getId() {
@@ -64,5 +74,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setRole(Role role) {
+        this.roles.add(role);
     }
 }
